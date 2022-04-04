@@ -29,7 +29,9 @@ public class Restaurant {
         return false;
     }
 
-    public LocalTime getCurrentTime(){ return  LocalTime.now(); }
+    public LocalTime getCurrentTime(){
+        return  LocalTime.now();
+    }
 
     public List<Item> getMenu() {
         return menu;
@@ -63,6 +65,28 @@ public class Restaurant {
                 +"Closing time:"+ closingTime +"\n"
                 +"Menu:"+"\n"+getMenu());
 
+    }
+
+    public int getTotalOrderCost(List<Item> menu){
+        int totalOrderCost = 0;
+        for(Item item: menu){
+            totalOrderCost += item.getPrice();
+        }
+        System.out.println("Your order will cost:"+totalOrderCost);
+        return totalOrderCost;
+    }
+
+    public int getTotalOrderCostString(List<String> itemList){
+        int totalOrderCost = 0;
+        for(String itemName: itemList){
+            Item item = findItemByName(itemName);
+            if(item !=null)
+                totalOrderCost += item.getPrice();
+            else
+                totalOrderCost+= 0;
+        }
+        System.out.println("Your order will cost:"+totalOrderCost);
+        return totalOrderCost;
     }
 
     public String getName() {
